@@ -1,0 +1,52 @@
+<div class="row">
+  <h2>
+    <button type="button" class="btn btn-info" style="float: right" data-toggle="modal" data-target="#myModal">New Post</button>
+  </h2>
+  <h2>Post</h2>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" ng-show-auth="">New Post</h4>
+        </div>
+        <div class="modal-body">
+          <form class="col-md-12">
+            <div class="form-group">
+              <label for="inputTitle">Title</label>
+              <input class="form-control" id="inputTitle" placeholder="Title" ng-model="newTitle">
+            </div>
+            <div class="form-group">
+              <label for="inputText">Text</label>
+              <textarea type="password" class="form-control" id="inputText" placeholder="Your text goes here..." ng-model="newText"></textarea>
+            </div>
+            <button data-dismiss="modal" type="submit" class="btn btn-primary" ng-click="addPost(newText, newTitle);newPost = null;">Publish</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-sm-6 col-md-6" ng-show="posts.length" ng-repeat="post in posts | reverse">
+    <div class="thumbnail">
+      <img src="http://placehold.it/350x250" alt="alt">
+      <div class="caption">
+        <h3>{{post.title}}</h3>
+        <p>{{post.date | date:'dd-MM-yyyy HH:mm:ss'}}</p>
+        <p>{{post.text | limitTo:155}}</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="alert alert-danger" ng-show="err">{{err}}</p>
